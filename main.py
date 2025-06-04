@@ -100,17 +100,17 @@ def add_argument(*args, **kwargs):
 
 if __name__ == '__main__':
     
-    add_argument('--zotero_id', default = "q1546258311", type=str, help='Zotero user ID')
-    add_argument('--zotero_key', default ="0cL5531ATzPXniMFjSApawvA", type=str, help='Zotero API key')
+    add_argument('--zotero_id', type=str, help='Zotero user ID')
+    add_argument('--zotero_key', type=str, help='Zotero API key')
     add_argument('--zotero_ignore',type=str,help='Zotero collection to ignore, using gitignore-style pattern.')
     add_argument('--send_empty', type=bool, help='If get no arxiv paper, send empty email',default=False)
     add_argument('--max_paper_num', type=int, help='Maximum number of papers to recommend',default=100)
-    add_argument('--arxiv_query', default="cs.AI+cs.CV+cs.LG+cs.CL", type=str, help='Arxiv search query')
-    add_argument('--smtp_server', default="smtp.gmail.com", type=str, help='SMTP server')
-    add_argument('--smtp_port', default="465", type=int, help='SMTP port')
-    add_argument('--sender', default="zhonghaoyi15601139653@gmail.com", type=str, help='Sender email address')
-    add_argument('--receiver',default="zhonghaoyi15601139653@gmail.com",  type=str, help='Receiver email address')
-    add_argument('--sender_password', default="ytzw vmdw stps jkqe", type=str, help='Sender email password')
+    add_argument('--arxiv_query', type=str, help='Arxiv search query')
+    add_argument('--smtp_server', type=str, help='SMTP server')
+    add_argument('--smtp_port', type=int, help='SMTP port')
+    add_argument('--sender', type=str, help='Sender email address')
+    add_argument('--receiver', type=str, help='Receiver email address')
+    add_argument('--sender_password', type=str, help='Sender email password')
     add_argument(
         "--use_llm_api",
         type=bool,
@@ -139,7 +139,7 @@ if __name__ == '__main__':
         "--language",
         type=str,
         help="Language of TLDR",
-        default="Chinese",
+        default="English",
     )
     parser.add_argument('--debug', action='store_true', help='Debug mode')
     args = parser.parse_args()
@@ -183,4 +183,3 @@ if __name__ == '__main__':
     logger.info("Sending email...")
     send_email(args.sender, args.receiver, args.sender_password, args.smtp_server, args.smtp_port, html)
     logger.success("Email sent successfully! If you don't receive the email, please check the configuration and the junk box.")
-
